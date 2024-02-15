@@ -44,18 +44,13 @@ export async function getTransactions(walletAddress: string, proxy?: string, use
 
       const response = await makeApiRequest<AccountTransactionsResponseDto>(apiUrl, proxy, userAgent);
 
-      if (response !== null) {
-        const filteredTransactions = response.result.filter((transaction) => transaction.isError === "0");
-        allTransactions = allTransactions.concat(filteredTransactions);
+      const filteredTransactions = response.result.filter((transaction) => transaction.isError === "0");
+      allTransactions = allTransactions.concat(filteredTransactions);
 
-        if (response.result.length < pageSize) {
-          break;
-        } else {
-          page++;
-        }
-      } else {
-        console.error("Unexpected response format:", response);
+      if (response.result.length < pageSize) {
         break;
+      } else {
+        page++;
       }
     }
   } catch (error) {

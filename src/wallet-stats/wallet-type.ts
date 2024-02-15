@@ -8,13 +8,7 @@ async function getContractInfo(walletAddress: string, proxy?: string, userAgent?
   const response = await makeApiRequest<ContractSourceCodeDto>(apiUrl, proxy, userAgent);
   // console.log(apiUrl);
 
-  if (response?.result && response.result.length > 0) {
-    // console.log(response.result[0]);
-    return response.result[0];
-  } else {
-    console.error("Response might be null");
-    return null;
-  }
+  return response.result[0];
 }
 async function checkContractCreation(walletAddress: string, proxy?: string, userAgent?: string) {
   try {

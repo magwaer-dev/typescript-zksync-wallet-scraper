@@ -12,10 +12,6 @@ export async function getBalance(walletAddress: string, proxy?: string, userAgen
   console.log("for address: ", walletAddress);
   console.log("with user-agent: ", userAgent);
 
-  if (response === null) {
-    throw new Error("Error: Response from balance API is null.");
-  }
-
   const balanceWei = parseFloat(response.result);
   const balanceEth = weiToEth(balanceWei);
 
