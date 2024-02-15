@@ -16,16 +16,20 @@ async function getContractInfo(walletAddress: string, proxy?: string, userAgent?
     return null;
   }
 }
-// this function checks the contract creation and sometimes if there is no contract it triggers the log: "Error in API response No data found" (needs fix)
 async function checkContractCreation(walletAddress: string, proxy?: string, userAgent?: string) {
   try {
     const params = giveParams("contractaddresses", walletAddress);
     const apiUrl = buildApiUrl(getContractCreationApiEndpoint, params);
     const response = await makeApiRequest<ContractSourceCodeDto>(apiUrl, proxy, userAgent);
 
-    return response !== null;
-  } catch (error) {
-    console.error("Error while checking contract creation", error);
+    return response.result.length > 0;
+  } catch (error: any) {
+    if (error.message.includes("No data found")) {
+      return false;
+    } else {
+      console.error("Error while checking contract creation", error);
+      throw error;
+    }
   }
 }
 
