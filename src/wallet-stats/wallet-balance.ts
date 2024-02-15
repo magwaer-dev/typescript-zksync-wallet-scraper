@@ -7,7 +7,7 @@ export async function getBalance(walletAddress: string, proxy?: string, userAgen
   const apiUrl = buildApiUrl(balanceApiEndpoint, params);
   const response = await makeApiRequest<AccountEtherBalanceResponseDto>(apiUrl, proxy, userAgent);
   // console.log(response);
-  console.log("Log from wallet-balance.ts/line 10");
+  console.log("Log from wallet-balance.ts/line 10:");
   console.log("Using Proxy: ", proxy);
   console.log("for address: ", walletAddress);
   console.log("with user-agent: ", userAgent);
