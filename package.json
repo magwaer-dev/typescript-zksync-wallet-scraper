@@ -11,5 +11,8 @@
   "dependencies": {
     "got-scraping": "^3.2.15",
     "hpagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
